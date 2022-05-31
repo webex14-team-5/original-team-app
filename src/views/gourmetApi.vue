@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div>{{ shopinformation }}</div>
+</template>
 
 <script>
 fetch("https://webservice.recruit.co.jp/hotpepper/shop/v1/")
@@ -6,9 +8,6 @@ fetch("https://webservice.recruit.co.jp/hotpepper/shop/v1/")
     return res.json()
   })
   .then((data) => {
-    data(){
-
-    }
     const shopInformation = data.shop
     /*
     shop[id: お店id,
@@ -34,4 +33,9 @@ fetch("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/")
     photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]
     */
   })
+export default {
+  props: {
+    shopInformation,
+  },
+}
 </script>
