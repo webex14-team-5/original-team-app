@@ -6,7 +6,7 @@
 export default {
   props: {
     shopName: {
-      default: "Mcd",
+      default: "o",
     },
   },
   data() {
@@ -18,11 +18,13 @@ export default {
   },
 
   async mounted() {
+    console.log("start to fetch!")
     const data = await fetch(
       "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&name=" +
         this.shopName,
       this.headers
     )
+    console.log("fetched!")
     const json = await data.json()
     this.shopInformation = json.shop
     /*
