@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
+import gourmetApi from "@/views/gourmetApi.vue"
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/gourmetApi",
+    name: "gourmetApi",
+    component: gourmetApi,
   },
   {
     path: "/about",
