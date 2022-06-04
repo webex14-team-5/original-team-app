@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router"
+
 // import Vue from "vue"
 import HomeView from "@/views/HomeView.vue"
 import LoginView from "@/views/LoginView.vue"
+import gourmetApi from "@/views/gourmetApi.vue"
 import RegisterView from "@/views/RegisterView"
 
 const routes = [
@@ -9,6 +11,11 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/gourmetApi",
+    name: "gourmetApi",
+    component: gourmetApi,
   },
   {
     path: "/about",
