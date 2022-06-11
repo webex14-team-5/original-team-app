@@ -13,6 +13,10 @@
 
 <script>
 import axios from "@/axios-auth"
+import { collection, addDoc } from "firebase/firestore"
+import { getAuth } from "firebase/auth"
+import { db } from "firebase/firestore"
+
 export default {
   data() {
     return {
@@ -33,6 +37,16 @@ export default {
         )
         .then((response) => {
           console.log(response)
+        })
+        .then(() => {
+          const auth = getAuth()
+          return auth.currentUser
+        })
+        .then((user) => {
+          addDoc(collection(db, "users"), {
+            uid: user.uid,
+          })
+          console.log(user.uid)
         })
     },
   },
