@@ -4,7 +4,7 @@
     <!-- Access-Control-Allow-Originエラーを回避する -->
     <header>("Access-Control-Allow-Origin: *")</header>
     <input class="search_word" type="text" v-model="inputText" />
-    <button v-on:click="findPlace">検索</button>
+    <button v-on:click="getPlaceId">検索</button>
   </section>
   <!-- 結果表示 -->
   <section>
