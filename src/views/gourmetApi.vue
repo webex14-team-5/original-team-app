@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { addDoc } from "@firebase/firestore"
+import { getFirestore, collection, setDoc, addDoc } from "@firebase/firestore"
 import fetchJsonp from "fetch-jsonp"
 
 export default {
@@ -59,7 +59,18 @@ export default {
       */
     },
     good: function () {
-      addDoc(collection(db, "users"))
+      const db = getFirestore()
+      setDoc(collection(db, "users", "starPost"))
+        .then((res) => {
+          return res.length
+        })
+        .then((res2) =>
+          addDoc(collection(db, "users")).then((res3) => {
+            res3.starPost[res2] =
+              this.shopData.results.shop[Number(this.numbers)].id
+          })
+        )
+    },
   },
 }
 </script>

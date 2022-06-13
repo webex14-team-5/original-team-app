@@ -12,15 +12,13 @@ export default {
   components: { GourmetApi },
   data() {
     return {
-      shopData: { results: { shop: [{ name: "" }] } },
+      shopData: { results: { shop: [{ name: "あ" }] } },
       shopName: "",
       // 「 numbers 件目の店」
       numbers: "",
       // 条件合致する店が存在するかどうか
+      a: "",
     }
-  },
-  mounted: function () {
-    a = shopData.name
   },
 }
 </script>
