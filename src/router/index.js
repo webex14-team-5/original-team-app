@@ -5,6 +5,7 @@ import HomeView from "@/views/HomeView.vue"
 import LoginView from "@/views/LoginView.vue"
 import gourmetApi from "@/views/gourmetApi.vue"
 import RegisterView from "@/views/RegisterView"
+import PlacesApiView from "@/views/PlacesApiView.vue"
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: RegisterView,
+  },
+  {
+    path: "/places",
+    name: "places",
+    component: PlacesApiView,
   },
 ]
 

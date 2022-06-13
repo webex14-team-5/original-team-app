@@ -5,7 +5,10 @@
     <router-link to="/gourmetApi">gourmetApi</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/register">Register</router-link> |
-    <router-link to="/mergePlacesGourmet">placesGourmet</router-link>
+    <router-link to="/mergePlacesGourmet">placesGourmet</router-link> |
+    <router-link to="/login">Login</router-link> |
+    <router-link to="/register">Register</router-link>|
+    <router-link to="/places">Places</router-link>
   </nav>
   <router-view />
 </template>
