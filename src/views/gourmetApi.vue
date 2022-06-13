@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { getFirestore, collection, addDoc, setDoc } from "@firebase/firestore"
 import fetchJsonp from "fetch-jsonp"
 
 export default {
@@ -32,6 +31,8 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
+      lat: 35.032563,
+      lng: 135.723292,
     }
   },
 
@@ -40,7 +41,11 @@ export default {
       this.shopName = this.inputText
       const res = await fetchJsonp(
         "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
-          this.shopName
+          this.shopName +
+          "&lat=" +
+          String(this.lat) +
+          "&lng=" +
+          String(this.lng)
       )
       const data = await res.json()
       this.shopData = data
@@ -57,6 +62,15 @@ export default {
       budget_memo: 料金備考, catch: お店キャッチ, urls: 店舗url,
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
+      var associativeArrayGourmet = {}
+      for (let i = 0; i < this.shopData.results.shop.length; i++) {
+        const lat = this.shopData.results.shop[i].lat
+        const lng = this.shopData.results.shop[i].lng
+        const name = this.shopData.results.shop[i].name
+        const place = String(lat) + String(lng)
+        associativeArrayGourmet[place] = name
+      }
+      console.log(associativeArrayGourmet)
     },
   },
 }
