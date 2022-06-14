@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { getFirestore, collection, setDoc, addDoc } from "@firebase/firestore"
+import { collection, addDoc } from "@firebase/firestore"
+import { db } from "/firebase"
 import fetchJsonp from "fetch-jsonp"
 
 export default {
@@ -58,18 +59,10 @@ export default {
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
     },
-    good: function () {
-      const db = getFirestore()
-      setDoc(collection(db, "users", "starPost"))
-        .then((res) => {
-          return res.length
-        })
-        .then((res2) =>
-          addDoc(collection(db, "users")).then((res3) => {
-            res3.starPost[res2] =
-              this.shopData.results.shop[Number(this.numbers)].id
-          })
-        )
+    good() {
+      addDoc(collection(db, "users"), {
+        starPost: "のあー！",
+      })
     },
   },
 }
