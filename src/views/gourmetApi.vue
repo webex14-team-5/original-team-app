@@ -10,10 +10,11 @@
     <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
-        {{ numbers + 1 }}{{ shop.name }}
+        {{ numbers + 1 }}{{ shop.name }}{{ uid.uid }}
         <div class="actionGood">
           <button v-on:click="good">いいね！</button>
         </div>
+        <ActionGood v-bind:key="uid" />
       </div>
     </div>
   </section>
@@ -23,8 +24,14 @@
 import { collection, addDoc } from "@firebase/firestore"
 import { db } from "/firebase"
 import fetchJsonp from "fetch-jsonp"
+import uid from "@/views/LoginView.vue"
+import ActionGood from "@/components/ActionGood.vue"
 
 export default {
+  props: ["uid"],
+  components: {
+    ActionGood,
+  },
   data() {
     return {
       shopData: { results: { shop: [{ name: "" }] } },
@@ -60,9 +67,12 @@ export default {
       */
     },
     good() {
-      addDoc(collection(db, "users"), {
+      console.log("start")
+      console.log(uid.uid)
+      addDoc(collection(db, "users", uid), {
         starPost: "のあー！",
       })
+      console.log("succuss")
     },
   },
 }

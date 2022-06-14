@@ -1,28 +1,20 @@
 <template>
   <div>
-    <Login v-bind:key="uid" />
-    <Gourmet v-bind:key="uid" />
-    {{ uid }}あ
+    <h2>ログイン</h2>
+    <label for="email">Email</label>
+    <input id="email" type="email" v-model="email" />
+    <br /><br />
+    <label for="password">Password</label>
+    <input id="password" type="password" v-model="password" />
+    <br /><br />
+    <button v-on:click="login">ログイン</button>
   </div>
 </template>
 
 <script>
 import axios from "@/axios-auth"
-import Gourmet from "@/views/gourmetApi.vue"
-import Login from "@/components/LoginComponents.vue"
 
 export default {
-  components: {
-    Gourmet,
-    Login,
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-      uid: "",
-    }
-  },
   methods: {
     login() {
       axios
