@@ -28,7 +28,7 @@ export default {
         )
         .then((response) => {
           console.log(response.data.localId)
-          this.uid = response.data.localId
+          this.$emit("loginUid", response.data.localId)
         })
     },
   },

@@ -1,22 +1,25 @@
 <template>
-  <button v-on:click="good">いいね！</button>
+  <div><button v-on:click="good">いいね！</button>{{ uId }}</div>
+  <div><button v-on:click="goodNess">よい</button></div>
 </template>
 
 <script>
-import { collection, addDoc } from "@firebase/firestore"
+import { doc, setDoc } from "@firebase/firestore"
 import { db } from "/firebase"
-import uid from "@/components/LoginComponents.vue"
 
 export default {
-  props: ["uid"],
-  method: {
+  props: ["uId"],
+  methods: {
     good() {
       console.log("start")
-      console.log(this.uid)
-      addDoc(collection(db, "users", uid), {
-        starPost: "のあー！",
+      console.log(this.uId)
+      setDoc(doc(db, "users", this.uId), {
+        starPost: "のあー！のあー！uid...",
       })
       console.log("succuss")
+    },
+    goodNess() {
+      console.log("よい")
     },
   },
 }

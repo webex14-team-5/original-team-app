@@ -10,21 +10,16 @@
     <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
-        {{ numbers + 1 }}{{ shop.name }}{{ uid.uid }}
-        <div class="actionGood">
-          <button v-on:click="good">いいね！</button>
-        </div>
-        <ActionGood v-bind:key="uid" />
+        {{ numbers + 1 }}{{ shop.name }}{{ uid }}
+        <button v-on:click="iine">よきよき</button>
+        <ActionGood v-bind:uId="uid" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { collection, addDoc } from "@firebase/firestore"
-import { db } from "/firebase"
 import fetchJsonp from "fetch-jsonp"
-import uid from "@/views/LoginView.vue"
 import ActionGood from "@/components/ActionGood.vue"
 
 export default {
@@ -46,6 +41,7 @@ export default {
   methods: {
     async catcher() {
       this.shopName = this.inputText
+      console.log(this.uid)
       const res = await fetchJsonp(
         "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
           this.shopName
@@ -66,13 +62,8 @@ export default {
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
     },
-    good() {
-      console.log("start")
-      console.log(uid.uid)
-      addDoc(collection(db, "users", uid), {
-        starPost: "のあー！",
-      })
-      console.log("succuss")
+    iine() {
+      console.log("iine")
     },
   },
 }

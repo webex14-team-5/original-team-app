@@ -1,13 +1,12 @@
 <template>
   <div>
-    <Login v-bind:key="uid" />
-    <Gourmet v-bind:key="uid" />
-    {{ uid }}あ
+    <Login @loginUid="uid = $event" />
+    <Gourmet v-bind:uid="uid" />
+    {{ uid }}
   </div>
 </template>
 
 <script>
-import axios from "@/axios-auth"
 import Gourmet from "@/views/gourmetApi.vue"
 import Login from "@/components/LoginComponents.vue"
 
@@ -22,23 +21,6 @@ export default {
       password: "",
       uid: "",
     }
-  },
-  methods: {
-    login() {
-      axios
-        .post(
-          "/accounts:signInWithPassword?key=AIzaSyAZMtb3rWXyqz6zo_BEmbSNEkuyBP6A_0U",
-          {
-            email: this.email,
-            password: this.password,
-            returnSecureToken: true,
-          }
-        )
-        .then((response) => {
-          console.log(response.data.localId)
-          this.uid = response.data.localId
-        })
-    },
   },
 }
 </script>
