@@ -11,8 +11,8 @@
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
         {{ numbers + 1 }}{{ shop.name }}{{ uid }}
-        <button v-on:click="iine">よきよき</button>
-        <ActionGood v-bind:uId="uid" />
+        <!--<ActionGood v-bind:uId="uid" />-->
+        <SendUid v-bind:uId="uid" />
       </div>
     </div>
   </section>
@@ -20,12 +20,14 @@
 
 <script>
 import fetchJsonp from "fetch-jsonp"
-import ActionGood from "@/components/ActionGood.vue"
+// import ActionGood from "@/components/ActionGood.vue"
+import SendUid from "@/components/SendUid.vue"
 
 export default {
   props: ["uid"],
   components: {
-    ActionGood,
+    // ActionGood,
+    SendUid,
   },
   data() {
     return {
@@ -35,6 +37,7 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
+      uId: "",
     }
   },
 
@@ -61,9 +64,6 @@ export default {
       budget_memo: 料金備考, catch: お店キャッチ, urls: 店舗url,
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
-    },
-    iine() {
-      console.log("iine")
     },
   },
 }

@@ -1,5 +1,9 @@
 <template>
-  <div><button v-on:click="good">いいね！</button>{{ uId }}</div>
+  <div>
+    <button v-on:click="good">いいね！</button>{{ uIdForActionGood }}宇宙間子{{
+      this.uid
+    }}
+  </div>
   <div><button v-on:click="goodNess">よい</button></div>
 </template>
 
@@ -8,13 +12,13 @@ import { doc, setDoc } from "@firebase/firestore"
 import { db } from "/firebase"
 
 export default {
-  props: ["uId"],
+  props: ["uIdForActionGood"],
   methods: {
     good() {
       console.log("start")
-      console.log(this.uId)
-      setDoc(doc(db, "users", this.uId), {
-        starPost: "のあー！のあー！uid...",
+      console.log(this.uIdForActionGood)
+      setDoc(doc(db, "users", this.uIdForActionGood), {
+        starPost: "のあー！のあー！grid...",
       })
       console.log("succuss")
     },
