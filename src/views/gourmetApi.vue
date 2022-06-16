@@ -11,7 +11,6 @@
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
         {{ numbers + 1 }}{{ shop.name }}{{ uid }}
-        <button v-on:click="iine">よきよき</button>
         <ActionGood v-bind:uId="uid" />
       </div>
     </div>
@@ -61,9 +60,6 @@ export default {
       budget_memo: 料金備考, catch: お店キャッチ, urls: 店舗url,
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
-    },
-    iine() {
-      console.log("iine")
     },
   },
 }

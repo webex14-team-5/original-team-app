@@ -14,7 +14,7 @@ export default {
       console.log("start")
       console.log(this.uId)
       setDoc(doc(db, "users", this.uId), {
-        starPost: "のあー！のあー！uid...",
+        starPost: "のあー！のあー！uid2...",
       })
       console.log("succuss")
     },
