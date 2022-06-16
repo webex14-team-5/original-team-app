@@ -5,17 +5,18 @@
 </template>
 
 <script>
-import { doc, setDoc } from "@firebase/firestore"
+import { doc, updateDoc, arrayUnion } from "@firebase/firestore"
 import { db } from "/firebase"
 
 export default {
-  props: ["uId"],
+  props: ["uId", "shopId"],
   methods: {
     good() {
       console.log("start")
+      console.log(this.shopId)
       console.log(this.uId)
-      setDoc(doc(db, "users", this.uId), {
-        starPost: "のあー!のあー!uid2...",
+      updateDoc(doc(db, "users", this.uId), {
+        starPost: arrayUnion(this.shopId),
       })
       console.log("succuss")
     },
