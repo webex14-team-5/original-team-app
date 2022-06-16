@@ -1,6 +1,7 @@
 <template>
-  <div><button v-on:click="good">いいね！</button>{{ uId }}</div>
-  <div><button v-on:click="goodNess">よい</button></div>
+  <div>
+    <button v-on:click="good">いいね！</button>
+  </div>
 </template>
 
 <script>
@@ -14,12 +15,9 @@ export default {
       console.log("start")
       console.log(this.uId)
       setDoc(doc(db, "users", this.uId), {
-        starPost: "のあー！のあー！uid2...",
+        starPost: "のあー!のあー!uid2...",
       })
       console.log("succuss")
-    },
-    goodNess() {
-      console.log("よい")
     },
   },
 }
