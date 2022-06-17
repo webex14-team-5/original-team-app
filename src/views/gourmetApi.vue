@@ -34,6 +34,7 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
+      userData: "",
     }
   },
 
