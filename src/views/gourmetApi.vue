@@ -11,7 +11,8 @@
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
         {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
-        <ActionGood v-bind:uId="uid" v-bind:shopId="shop.id" />
+        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+        <button v-on:click="showDetail">詳細表示</button>
       </div>
     </div>
   </section>
@@ -60,6 +61,9 @@ export default {
       budget_memo: 料金備考, catch: お店キャッチ, urls: 店舗url,
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
+    },
+    showDetail() {
+      console.log(this.shopData)
     },
   },
 }
