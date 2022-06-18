@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Login @loginUid="uid = $event" />
-    <Gourmet v-bind:uid="uid" />
+    <Login @loginUid="uid = $event" @userData="userData = $event" />
+    <Gourmet v-bind:uid="uid" v-bind:userData="userData" />
     {{ uid }}
   </div>
 </template>
