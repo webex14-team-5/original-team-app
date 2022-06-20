@@ -10,6 +10,22 @@ import { db } from "/firebase"
 
 export default {
   props: ["uId", "shopId"],
+  async created() {
+    // user の starPost に存在するか
+    const userDataGet = await getDoc(doc(db, "users", this.uId))
+    const userData = userDataGet.data()
+    console.log(userData)
+    const starPost = userData.starPost
+    console.log(starPost)
+    // user の starPost に存在しない => result = -1
+    const result = starPost.lastIndexOf(this.shop.id)
+    console.log("result: " + result)
+    if (result == -1) {
+      this.done = "いいねしてください！"
+    } else {
+      this.done = "いいね！しました。"
+    }
+  },
   methods: {
     good() {
       console.log("start")
