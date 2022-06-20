@@ -1,13 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/gourmetApi">gourmetApi</router-link> |
-    <router-link to="/login">Login</router-link> |
     <router-link to="/register">Register</router-link> |
-    <router-link to="/mergePlacesGourmet">placesGourmet</router-link> |
-    <router-link to="/register">Register</router-link>|
-    <router-link to="/places">Places</router-link>
+    <router-link to="/myPage">MyPage</router-link>
   </nav>
   <router-view />
 </template>

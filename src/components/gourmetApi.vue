@@ -11,7 +11,7 @@
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
         {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
-        <ActionGood v-bind:uId="uid" v-bind:shopId="shop.id" />
+        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
       </div>
     </div>
   </section>
@@ -34,6 +34,7 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
+      userData: "",
     }
   },
 
