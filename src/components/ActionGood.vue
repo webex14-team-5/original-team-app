@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="good">いいね！</button>
+    <button v-on:click="good">いいね！{{ this.count }}{{ this.done }}</button>
   </div>
 </template>
 
@@ -20,15 +20,21 @@ import { db } from "/firebase"
 export default {
   props: ["uId", "shop"],
   data() {
-    exist: false,
+    return {
+      count: 0,
+      done: "いいねしてください！",
+    }
   },
   async created() {
+    this.count = 0
+    this.done = "いいねしてください！"
     // user の starPost に存在するか
     const userDataGet = await getDoc(doc(db, "users", this.uId))
     const userData = userDataGet.data()
     console.log(userData)
     const starPost = userData.starPost
     console.log(starPost)
+    console.log(this.shop.id)
     // user の starPost に存在しない => result = -1
     const result = starPost.lastIndexOf(this.shop.id)
     console.log("result: " + result)
@@ -37,7 +43,6 @@ export default {
     } else {
       this.done = "いいね！しました。"
     }
-
   },
   methods: {
     async good() {
@@ -79,6 +84,7 @@ export default {
           open: this.shop.open,
           countGood: 1,
         })
+        this.done = "いいね！ありがとう"
         console.log("初期設定")
       } // countGood を +1 する
       else if (result == -1) {
@@ -92,7 +98,6 @@ export default {
         })
         console.log("いいね追加")
       }
-
       console.log("succuss")
     },
   },
