@@ -11,7 +11,12 @@
     <input id="userName" type="userName" v-model="userName" />
     <br /><br />
     <label for="university">University</label>
-    <input id="university" type="university" v-model="university" />
+    <select id="university" name="university" v-model="university" multiple>
+      <option value="U_tokyo">東京大学</option>
+      <option value="U_kyoto">京都大学</option>
+      <option value="rits_U">立命館大学</option>
+      <option value="meiji_U">明治大学</option>
+    </select>
     <br /><br />
     <button v-on:click="register">登録</button>
   </div>
@@ -44,7 +49,13 @@ export default {
         })
         .then((response) => {
           console.log(response)
+          // uid を返す
           this.uId = response.data.localId
+          // myUniversity 配列確認
+          console.log(this.university)
+          // myUniversity に配列にして入れる
+          this.myUniversity = Object.values(this.university)
+          console.log(this.myUniversity)
         })
         .then(() => {
           setDoc(doc(db, "users", this.uId), {
