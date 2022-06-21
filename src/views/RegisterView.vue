@@ -10,7 +10,7 @@
     <label for="userName">User Name</label>
     <input id="userName" type="userName" v-model="userName" />
     <br /><br />
-    <label for="university">University</label>
+    <label for="university">University Ctrlで複数選択</label>
     <select id="university" name="university" v-model="university" multiple>
       <option value="U_tokyo">東京大学</option>
       <option value="U_kyoto">京都大学</option>
