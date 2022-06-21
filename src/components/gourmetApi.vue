@@ -3,6 +3,17 @@
   <section>
     <input class="search_word" type="text" v-model="inputText" />
     <button v-on:click="catcher">検索</button>
+    <!-- 大学選択 -->
+    <section class="search_with_univ_name">
+      <label for="search_univ">大学を選んでください（規定値は"なし"）</label>
+      <select name="univ" id="search_univ" v-model="univ">
+        <option value="なし" selected>なし</option>
+        <option value="U_tokyo">東京大学</option>
+        <option value="U_kyoto">京都大学</option>
+        <option value="rits_U">立命館大学</option>
+        <option value="meiji_U">明治大学</option>
+      </select>
+    </section>
   </section>
   <!-- 結果表示 -->
   <section>
@@ -35,6 +46,11 @@ export default {
       // 条件合致する店が存在するかどうか
       exit: false,
       userData: "",
+      // lat...緯度 lng...経度
+      lat: 0,
+      lng: 0,
+      // 大学の設定
+      univSetting: true,
     }
   },
 
@@ -42,10 +58,25 @@ export default {
     async catcher() {
       this.shopName = this.inputText
       console.log(this.uid)
-      const res = await fetchJsonp(
-        "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
-          this.shopName
-      )
+      console.log(this.univ)
+      this.univSelecter()
+      let res = {}
+      if (this.univSetting) {
+        res = await fetchJsonp(
+          "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
+            this.shopName +
+            "&lat=" +
+            String(this.lat) +
+            "&lng=" +
+            String(this.lng)
+        )
+        console.log("大学設定検索完了")
+      } else {
+        res = await fetchJsonp(
+          "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
+            this.shopName
+        )
+      }
       const data = await res.json()
       this.shopData = data
       // 条件合致する店が存在するかどうか
@@ -61,6 +92,25 @@ export default {
       budget_memo: 料金備考, catch: お店キャッチ, urls: 店舗url,
       photo: 写真[[pc: [l, m, s], [mobile: [l, s]], open: 営業日時間]}
       */
+    },
+    // 大学により緯度経度を設定する method
+    univSelecter() {
+      if (this.univ == "U_tokyo") {
+        this.lat = 35.7126775
+        this.lng = 139.7598003
+      } else if (this.univ == "U_kyoto") {
+        this.lat = 35.0262444
+        this.lng = 135.7786331
+      } else if (this.univ == "rits_U") {
+        this.lat = 35.0328867
+        this.lng = 135.7240459
+      } else if (this.univ == "meiji_U") {
+        this.lat = 35.6972422
+        this.lng = 139.7593459
+      } else {
+        this.univSetting = false
+      }
+      console.log(this.lat)
     },
   },
 }
