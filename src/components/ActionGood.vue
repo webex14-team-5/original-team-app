@@ -26,8 +26,6 @@ export default {
     }
   },
   async created() {
-    this.count = 0
-    this.done = "いいねしてください！"
     // user の starPost に存在するか
     const userDataGet = await getDoc(doc(db, "users", this.uId))
     const userData = userDataGet.data()
@@ -42,6 +40,29 @@ export default {
       this.done = "いいねしてください！"
     } else {
       this.done = "いいね！しました。"
+    }
+    // いいね数の反映
+    // いいねされた店リストにあるか
+    let exist = false
+    let countOfGood = 0
+    console.log("start")
+    console.log(this.shop)
+    console.log(this.uId)
+    // ドキュメントidを取得
+    const q = query(collection(db, "shops"))
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      if (doc.id == this.shop.id) {
+        // いいねされた店にある
+        exist = true
+        countOfGood = doc.data().countGood
+        console.log(doc.data().countGood)
+      }
+    })
+    if (exist) {
+      console.log("exist")
+      this.count = countOfGood
     }
   },
   methods: {
@@ -85,6 +106,7 @@ export default {
           countGood: 1,
         })
         this.done = "いいね！ありがとう"
+        this.count += 1
         console.log("初期設定")
       } // countGood を +1 する
       else if (result == -1) {
