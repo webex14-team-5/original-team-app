@@ -17,10 +17,12 @@
 </template>
 
 <script>
+let associativeArrayGoogle = {}
 export default {
   data() {
     return {
-      myLatLng: { lat: 35.75594, lng: 139.877768 },
+      myLatLng: { lat: 34.65594, lng: 135.007768 },
+      shopData: {},
     }
   },
   mounted() {
@@ -49,12 +51,13 @@ export default {
         clearInterval(timer)
         let map = new window.google.maps.Map(this.$refs.map, {
           center: this.myLatLng,
-          zoom: 15,
+          zoom: 10,
         })
         new window.google.maps.Marker({ position: this.myLatLng, map })
         let service = new window.google.maps.places.PlacesService(map)
 
         service.nearbySearch(request, this.callback)
+        // this.associateArray()
       }
     }, 500)
   },
@@ -62,10 +65,22 @@ export default {
     callback: function (results, status) {
       if (status == window.google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
-          console.log(results[i].geometry.location.lat)
+          // console.log(results[i])
+          const lat = results[i].geometry.viewport.Ab.lo
+          const lng = results[i].geometry.viewport.Ua.lo
+          const name = results[i].name
+          const place = String(lat) + String(lng)
+          console.log(place)
+          associativeArrayGoogle[place] = name
         }
+        console.log(this.associativeArrayGoogle)
       }
     },
+    // associateArray: function () {
+    //   console.log(this.shopData)
+    //   for (let i = 0; i < this.shopData.length; i++) {}
+    //   // console.log(associativeArrayGoogle)
+    // },
   },
 }
 </script>

@@ -2,7 +2,11 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
+<<<<<<< HEAD
     <router-link to="/gourmetApi">gourmetApi</router-link> |
+=======
+    <router-link to="/gourmetApi">gourmetApi</router-link> | 
+>>>>>>> master
     <router-link to="/login">Login</router-link> |
     <router-link to="/register">Register</router-link>|
     <router-link to="/places">Places</router-link>
