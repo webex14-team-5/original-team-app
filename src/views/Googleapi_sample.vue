@@ -17,55 +17,26 @@
 </template>
 
 <script>
+const URL =
+  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAyAIhbvR6SvjdZtEbMwRmvRk3NQmyGg0M&location=-33.8670522,151.1957362&radius=5000&type=restaurant"
+
 export default {
   data() {
     return {
-      myLatLng: { lat: 35.75594, lng: 139.877768 },
+      data: {},
     }
   },
-  mounted() {
-    if (!window.mapLoadStarted) {
-      window.mapLoadStarted = true
-      let script = document.createElement("script")
-      script.src =
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyAyAIhbvR6SvjdZtEbMwRmvRk3NQmyGg0M&callback=initMap&libraries=places"
-      script.async = true
-      document.head.appendChild(script)
-    }
-
-    window.initMap = () => {
-      window.mapLoaded = true
-    }
-    // let pyrmont = new window.google.maps.LatLng(35.714, 139.797)
-
-    const request = {
-      location: this.myLatLng,
-      radius: "1000",
-      type: ["restaurant"],
-    }
-
-    let timer = setInterval(() => {
-      if (window.mapLoaded) {
-        clearInterval(timer)
-        let map = new window.google.maps.Map(this.$refs.map, {
-          center: this.myLatLng,
-          zoom: 15,
-        })
-        new window.google.maps.Marker({ position: this.myLatLng, map })
-        let service = new window.google.maps.places.PlacesService(map)
-
-        service.nearbySearch(request, this.callback)
-      }
-    }, 500)
-  },
-  methods: {
-    callback: function (results, status) {
-      if (status == window.google.maps.places.PlacesServiceStatus.OK) {
-        for (let i = 0; i < results.length; i++) {
-          console.log(results[i].geometry.location.lat)
-        }
-      }
-    },
+  created: function () {
+    fetch(URL)
+      .then((data) => {
+        return data.json()
+      })
+      .then((jsonData) => {
+        console.log(jsonData.results)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   },
 }
 </script>
