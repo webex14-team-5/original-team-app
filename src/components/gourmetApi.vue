@@ -9,29 +9,39 @@
     <!-- 上位10件表示 -->
     <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
       <!-- 店存在した場合で表示 -->
-      <div v-if="exit">{{ numbers + 1 }}{{ shop.name }}</div>
+      <div v-if="exit">
+        {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
+        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
 import fetchJsonp from "fetch-jsonp"
+import ActionGood from "@/components/ActionGood.vue"
 
 export default {
+  props: ["uid"],
+  components: {
+    ActionGood,
+  },
   data() {
     return {
-      shopData: { results: { shop: [{ name: "" }] } },
+      shopData: { results: { shop: [{ name: "", id: "" }] } },
       shopName: "",
       // 「 numbers 件目の店」
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
+      userData: "",
     }
   },
 
   methods: {
     async catcher() {
       this.shopName = this.inputText
+      console.log(this.uid)
       const res = await fetchJsonp(
         "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
           this.shopName
