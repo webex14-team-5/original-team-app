@@ -6,12 +6,12 @@
     <br /><br />
     <label for="password">Password</label>
     <input id="password" type="password" v-model="password" />
-    <!-- <br /><br />
+    <br /><br />
     <label for="userName">User Name</label>
     <input id="userName" type="userName" v-model="userName" />
     <br /><br />
     <label for="university">University</label>
-    <input id="university" type="university" v-model="university" /> -->
+    <input id="university" type="university" v-model="university" />
     <br /><br />
     <button v-on:click="register">登録</button>
   </div>
@@ -19,13 +19,19 @@
 
 <script>
 import axios from "@/axios-auth"
+import { doc, setDoc } from "@firebase/firestore"
+import { db } from "/firebase"
+
 export default {
   data() {
     return {
       email: "",
       password: "",
-      //   userName: "",
-      //   university: "",
+      userName: "",
+      university: "",
+      myUniversity: [],
+      starPost: [],
+      uId: "",
     }
   },
   methods: {
@@ -34,12 +40,19 @@ export default {
         .post("/accounts:signUp?key=AIzaSyAZMtb3rWXyqz6zo_BEmbSNEkuyBP6A_0U", {
           email: this.email,
           password: this.password,
-          //   userName: this.userName,
-          //   university: this.university,
           returnSecureToken: true,
         })
         .then((response) => {
           console.log(response)
+          this.uId = response.data.localId
+        })
+        .then(() => {
+          setDoc(doc(db, "users", this.uId), {
+            UID: this.uId,
+            nickName: this.userName,
+            myUniversity: this.myUniversity,
+            starPost: this.starPost,
+          })
         })
     },
   },

@@ -10,10 +10,8 @@
     <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
       <!-- 店存在した場合で表示 -->
       <div v-if="exit">
-        {{ numbers + 1 }}{{ shop.name }}
-        <div class="actionGood">
-          <button v-on:click="good">いいね！</button>
-        </div>
+        {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
+        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
       </div>
     </div>
   </section>
@@ -21,11 +19,16 @@
 
 <script>
 import fetchJsonp from "fetch-jsonp"
+import ActionGood from "@/components/ActionGood.vue"
 
 export default {
+  props: ["uid"],
+  components: {
+    ActionGood,
+  },
   data() {
     return {
-      shopData: { results: { shop: [{ name: "" }] } },
+      shopData: { results: { shop: [{ name: "", id: "" }] } },
       shopName: "",
       // 「 numbers 件目の店」
       numbers: "",
@@ -33,12 +36,14 @@ export default {
       exit: false,
       lat: 35.032563,
       lng: 135.723292,
+      userData: "",
     }
   },
 
   methods: {
     async catcher() {
       this.shopName = this.inputText
+      console.log(this.uid)
       const res = await fetchJsonp(
         "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ccf9680638c80665&&format=jsonp&&name=" +
           this.shopName +
