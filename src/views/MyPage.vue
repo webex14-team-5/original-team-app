@@ -29,6 +29,7 @@ export default {
       UserName: "",
       myUniversities: [],
       favShops: [],
+      favShopsId: [],
     }
   },
   methods: {
@@ -38,30 +39,19 @@ export default {
       const userDataGet = await getDoc(doc(db, "users", this.uid))
       const userData = userDataGet.data()
       this.myUniversities = userData.myUniversity
-      this.favShops = Object.values(userData.starPost)
+      this.favShopsId = Object.values(userData.starPost)
       this.UserName = userData.nickName
       // 店の情報の取得
       console.log("shops start")
-      for (let i = 0; i < this.favShops.length; i++) {
+      for (let i = 0; i < this.favShopsId.length; i++) {
         console.log("loop" + String(i))
         // const document = this.favShops[i]
-        const shopsDataGet = await getDoc(db, "shops", "J000760558")
+        const shopsDataGet = await getDoc(doc(db, "shops", this.favShopsId[i]))
         const shopsData = shopsDataGet.data()
         console.log(shopsDataGet)
-        const aShopData = [
-          shopsData.name,
-          shopsData.address,
-          shopsData.genre.name,
-        ]
-        // shopsData.docs.forEach((doc) => {
-        //   const aShopData = [
-        //     doc.data().name,
-        //     doc.data().address,
-        //     doc.data().genre.name,
-        //   ]
-        //   this.favShops.push(aShopData)
-        // })
+        const aShopData = [shopsData.name, shopsData.address, shopsData.genre]
         this.favShops.push(aShopData)
+        console.log("loop" + String(i) + " end")
       }
       console.log(this.favShops)
     },

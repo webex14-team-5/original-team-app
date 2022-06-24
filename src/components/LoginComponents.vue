@@ -7,7 +7,7 @@
     <label for="password">Password</label>
     <input id="password" type="password" v-model="password" />
     <br /><br />
-    <button v-on:click="login">ログイン</button>
+    <button v-on:click="login">{{ LoginStatus }}</button>
   </div>
 </template>
 
@@ -15,6 +15,11 @@
 import axios from "@/axios-auth"
 
 export default {
+  data() {
+    return {
+      LoginStatus: "ログイン",
+    }
+  },
   methods: {
     login() {
       axios
@@ -30,6 +35,9 @@ export default {
           console.log(response.data.localId)
           this.$emit("loginUid", response.data.localId)
           return response.data.localId
+        })
+        .then(() => {
+          this.LoginStatus = "ログインしました"
         })
     },
   },
