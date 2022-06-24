@@ -2,24 +2,31 @@
   <section>
     <Login @loginUid="uid = $event" @userData="userData = $event" />
   </section>
-  <section>
+  <section class="my-page">
     <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="show">
       表示する
     </button>
-    <div>ニックネーム: {{ this.UserName }}</div>
     <div>
-      お気に入り大学:
-      <div v-for="(univ, numbers) in myUniversities" :key="numbers">
-        {{ univ }}
-      </div>
+      <h7>ニックネーム</h7>
+      <h4>{{ this.UserName }}</h4>
     </div>
     <div>
-      いいねしたお店:
-      <div v-for="(shop, numbers) in favShops" :key="numbers">
-        店名：{{ shop[0] }}<br />ジャンル：{{ shop[1] }} <br />住所：{{
-          shop[2]
-        }}
-      </div>
+      <h7>大学</h7>
+      <h4>
+        <div v-for="(univ, numbers) in myUniversities" :key="numbers">
+          {{ univ }}
+        </div>
+      </h4>
+    </div>
+    <div>
+      <h7>いいねしたお店</h7>
+      <h4>
+        <div v-for="(shop, numbers) in favShops" :key="numbers">
+          店名：{{ shop[0] }}<br />ジャンル：{{ shop[2] }} <br />住所：{{
+            shop[1]
+          }}
+        </div>
+      </h4>
     </div>
   </section>
 </template>
@@ -68,3 +75,30 @@ export default {
   },
 }
 </script>
+
+<style>
+.my-page {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0);
+  float: left;
+}
+h4 {
+  text-align: center;
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+h7 {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: rgb(105, 101, 101);
+  padding-top: 0.5rem;
+}
+</style>
