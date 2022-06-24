@@ -4,12 +4,19 @@
   </section>
   <section>
     <button v-on:click="show">表示する</button>
-    <div>your name: {{ this.UserName }}</div>
-    <div>your fav Univ. : {{ this.myUniversities }}</div>
+    <div>ニックネーム: {{ this.UserName }}</div>
     <div>
-      your fav shops :
+      お気に入り大学:
+      <div v-for="(univ, numbers) in myUniversities" :key="numbers">
+        {{ univ }}
+      </div>
+    </div>
+    <div>
+      いいねしたお店:
       <div v-for="(shop, numbers) in favShops" :key="numbers">
-        {{ shop }}
+        店名：{{ shop[0] }}<br />ジャンル：{{ shop[1] }} <br />住所：{{
+          shop[2]
+        }}
       </div>
     </div>
   </section>
@@ -38,9 +45,10 @@ export default {
       // user 情報の反映
       const userDataGet = await getDoc(doc(db, "users", this.uid))
       const userData = userDataGet.data()
-      this.myUniversities = userData.myUniversity
       this.favShopsId = Object.values(userData.starPost)
       this.UserName = userData.nickName
+      // 大学名の処理
+      this.myUniversities = userData.myUniversity
       // 店の情報の取得
       console.log("shops start")
       for (let i = 0; i < this.favShopsId.length; i++) {
