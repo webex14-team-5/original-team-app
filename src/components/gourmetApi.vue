@@ -49,8 +49,6 @@ export default {
       lng: 135.723292,
       userData: "",
       // lat...緯度 lng...経度
-      lat: 0,
-      lng: 0,
       // 大学の設定
       univSetting: true,
     }
@@ -106,16 +104,16 @@ export default {
     },
     // 大学により緯度経度を設定する method
     univSelecter() {
-      if (this.univ == "U_tokyo") {
+      if (this.univ == "東京大学") {
         this.lat = 35.7126775
         this.lng = 139.7598003
-      } else if (this.univ == "U_kyoto") {
+      } else if (this.univ == "京都大学") {
         this.lat = 35.0262444
         this.lng = 135.7786331
-      } else if (this.univ == "rits_U") {
+      } else if (this.univ == "立命館大学") {
         this.lat = 35.0328867
         this.lng = 135.7240459
-      } else if (this.univ == "meiji_U") {
+      } else if (this.univ == "明治大学") {
         this.lat = 35.6972422
         this.lng = 139.7593459
       } else {

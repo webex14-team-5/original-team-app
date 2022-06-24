@@ -12,10 +12,10 @@
     <br /><br />
     <label for="university">University Ctrlで複数選択</label>
     <select id="university" name="university" v-model="university" multiple>
-      <option value="U_tokyo">東京大学</option>
-      <option value="U_kyoto">京都大学</option>
-      <option value="rits_U">立命館大学</option>
-      <option value="meiji_U">明治大学</option>
+      <option value="東京大学">東京大学</option>
+      <option value="京都大学">京都大学</option>
+      <option value="立命館大学">立命館大学</option>
+      <option value="明治大学">明治大学</option>
     </select>
     <br /><br />
     <router-link to="/"
