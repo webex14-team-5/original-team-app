@@ -18,7 +18,9 @@
       <option value="明治大学">明治大学</option>
     </select>
     <br /><br />
-    <button v-on:click="register">登録</button>
+    <router-link to="/"
+      ><button v-on:click="register">登録</button></router-link
+    >
   </div>
 </template>
 
