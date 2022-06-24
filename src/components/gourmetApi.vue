@@ -2,7 +2,12 @@
   <!--検索欄-->
   <section class="search_form">
     <h1>検索</h1>
-    <input class="search_word" type="text" v-model="inputText" />
+    <input
+      class="search_word"
+      type="text"
+      v-model="inputText"
+      placeholder="ワードで検索！"
+    />
     <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="catcher">
       検索
     </button>
@@ -13,22 +18,25 @@
       >
       <select name="univ" id="search_univ" v-model="univ">
         <option value="なし" selected>なし</option>
-        <option value="U_tokyo">東京大学</option>
-        <option value="U_kyoto">京都大学</option>
-        <option value="rits_U">立命館大学</option>
-        <option value="meiji_U">明治大学</option>
+        <option value="東京大学">東京大学</option>
+        <option value="京都大学">京都大学</option>
+        <option value="立命館大学">立命館大学</option>
+        <option value="明治大学">明治大学</option>
       </select>
     </section>
   </section>
   <!-- 結果表示 -->
   <section>
     <div class="search_result">
+      <h1>検索結果！</h1>
       <!-- 上位10件表示 -->
       <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
         <!-- 店存在した場合で表示 -->
         <div v-if="exit">
-          {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
-          <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+          <h3>店候補{{ numbers + 1 }}:</h3>
+          <br />
+          <h1>{{ shop.name }}</h1>
+          <ActionGood v-bind:uId="uid" v-bind:shop="shop" /><br /><br />
         </div>
       </div>
     </div>

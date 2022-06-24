@@ -3,7 +3,6 @@
     <Login @loginUid="uid = $event" @userData="userData = $event" />
     <Gourmet v-bind:uid="uid" v-bind:userData="userData" />
     <PlacesApi />
-    {{ uid }}
   </div>
 </template>
 

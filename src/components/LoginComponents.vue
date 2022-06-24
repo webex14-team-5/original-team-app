@@ -68,11 +68,16 @@ export default {
   background-color: #eb6100;
   border-bottom: 5px solid #b84c00;
 }
+.btn--red {
+  color: #fff;
+  background-color: red;
+  border-bottom: 5px solid #b84c00;
+}
 .btn--orange:hover {
   margin-top: 3px;
   color: #fff;
   background: #f56500;
-  border-bottom: 2px solid #b84c00;
+  border-bottom: 2px solid red;
 }
 .btn--shadow {
   -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);

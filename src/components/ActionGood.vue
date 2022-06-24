@@ -1,6 +1,9 @@
 <template>
   <div>
-    <button v-on:click="good">いいね！{{ this.count }}{{ this.done }}</button>
+    <button class="btn btn--cubic btn--red btn--shadow" v-on:click="good">
+      {{ this.count }}いいね</button
+    ><br />
+    <h3>{{ this.done }}</h3>
   </div>
 </template>
 
@@ -125,3 +128,12 @@ export default {
   },
 }
 </script>
+<style>
+h3 {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: rgb(105, 101, 101);
+  margin-bottom: 24px;
+}
+</style>
