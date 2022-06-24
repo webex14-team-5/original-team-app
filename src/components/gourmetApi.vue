@@ -49,8 +49,6 @@ export default {
       lng: 135.723292,
       userData: "",
       // lat...緯度 lng...経度
-      lat: 0,
-      lng: 0,
       // 大学の設定
       univSetting: true,
     }
