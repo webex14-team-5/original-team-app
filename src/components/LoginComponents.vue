@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>ログイン</h2>
+  <div class="login_form">
+    <h1>ログイン</h1>
     <input id="email" type="email" v-model="email" placeholder="Email" />
     <br /><br />
     <input
@@ -53,6 +53,16 @@ export default {
 </script>
 
 <style>
+.login_form {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 25%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+  float: right;
+}
 .btn--orange {
   color: #fff;
   background-color: #eb6100;

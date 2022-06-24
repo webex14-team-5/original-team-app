@@ -10,9 +10,9 @@
       <div v-if="exit">{{ numbers + 1 }}{{ shop.name }}</div>
     </div>
   </section> -->
-  <div>
+  <div class="google_map_parent">
     <h1>Google Map</h1>
-    <div ref="map" style="height: 500px; width: 800px"></div>
+    <div class="google_map" ref="map" style="height: 500px; width: 800px"></div>
   </div>
 </template>
 
@@ -78,3 +78,23 @@ export default {
   },
 }
 </script>
+
+<style>
+.google_map_parent {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+  float: right;
+  vertical-align: middle;
+  width: 100%;
+}
+.google_map {
+  float: center;
+  padding: 30px;
+  position: relative;
+  left: 25%;
+}
+</style>

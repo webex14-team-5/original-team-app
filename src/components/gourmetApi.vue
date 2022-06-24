@@ -1,6 +1,7 @@
 <template>
   <!--検索欄-->
-  <section>
+  <section class="search_form">
+    <h1>検索</h1>
     <input class="search_word" type="text" v-model="inputText" />
     <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="catcher">
       検索
@@ -8,7 +9,7 @@
     <!-- 大学選択 -->
     <section class="search_with_univ_name">
       <label for="search_univ" class="choice_univ_char"
-        >大学を選んでください（規定値は"なし"）</label
+        ><h2>大学を選んでください（規定値は"なし"）</h2></label
       >
       <select name="univ" id="search_univ" v-model="univ">
         <option value="なし" selected>なし</option>
@@ -21,12 +22,14 @@
   </section>
   <!-- 結果表示 -->
   <section>
-    <!-- 上位10件表示 -->
-    <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
-      <!-- 店存在した場合で表示 -->
-      <div v-if="exit">
-        {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
-        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+    <div class="search_result">
+      <!-- 上位10件表示 -->
+      <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
+        <!-- 店存在した場合で表示 -->
+        <div v-if="exit">
+          {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
+          <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+        </div>
       </div>
     </div>
   </section>
@@ -130,8 +133,35 @@ export default {
 </script>
 
 <style scoped>
+.search_form {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0);
+  float: left;
+}
+.search_result {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0);
+  float: left;
+}
 .choice_univ_char {
   font-size: large;
+}
+h2 {
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  color: rgb(105, 101, 101);
+  margin-bottom: 24px;
 }
 #search_univ {
   position: relative;

@@ -1,13 +1,6 @@
 <template>
   <div>
-    <Login
-      class="form"
-      @loginUid="uid = $event"
-      @userData="userData = $event"
-    />
-    <router-link to="/register"
-      >アカウントをお持ちでない方はこちらから</router-link
-    >
+    <Login @loginUid="uid = $event" @userData="userData = $event" />
     <Gourmet v-bind:uid="uid" v-bind:userData="userData" />
     <PlacesApi />
     {{ uid }}
