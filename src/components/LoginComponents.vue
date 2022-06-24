@@ -13,6 +13,11 @@
     <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="login">
       {{ LoginStatus }}
     </button>
+    <div>
+      <router-link to="/register" id="register_new_link"
+        >登録がまだの方はこちらからどうぞ。</router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -80,7 +85,7 @@ export default {
   -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
-router-link {
+#register_new_link {
   color: black;
 }
 </style>
