@@ -1,11 +1,16 @@
 <template>
   <!--検索欄-->
-  <section>
+  <section class="search_form">
+    <h1>検索</h1>
     <input class="search_word" type="text" v-model="inputText" />
-    <button v-on:click="catcher">検索</button>
+    <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="catcher">
+      検索
+    </button>
     <!-- 大学選択 -->
     <section class="search_with_univ_name">
-      <label for="search_univ">大学を選んでください（規定値は"なし"）</label>
+      <label for="search_univ" class="choice_univ_char"
+        ><h2>大学を選んでください（規定値は"なし"）</h2></label
+      >
       <select name="univ" id="search_univ" v-model="univ">
         <option value="なし" selected>なし</option>
         <option value="U_tokyo">東京大学</option>
@@ -17,12 +22,14 @@
   </section>
   <!-- 結果表示 -->
   <section>
-    <!-- 上位10件表示 -->
-    <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
-      <!-- 店存在した場合で表示 -->
-      <div v-if="exit">
-        {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
-        <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+    <div class="search_result">
+      <!-- 上位10件表示 -->
+      <div v-for="(shop, numbers) in shopData.results.shop" :key="numbers">
+        <!-- 店存在した場合で表示 -->
+        <div v-if="exit">
+          {{ numbers + 1 }}{{ shop.name }}{{ shop.id }}
+          <ActionGood v-bind:uId="uid" v-bind:shop="shop" />
+        </div>
       </div>
     </div>
   </section>
@@ -45,8 +52,8 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
-      lat: 35.032563,
-      lng: 135.723292,
+      // lat: 35.032563,
+      // lng: 135.723292,
       userData: "",
       // lat...緯度 lng...経度
       // 大学の設定
@@ -124,3 +131,92 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.search_form {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0);
+  float: left;
+}
+.search_result {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0);
+  float: left;
+}
+.choice_univ_char {
+  font-size: large;
+}
+h2 {
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  color: rgb(105, 101, 101);
+  margin-bottom: 24px;
+}
+#search_univ {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+
+  /*float: right;*/
+  min-width: 200px;
+  /*margin: 50px 33%;*/
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+  display: none;
+}
+
+#search_univ:after {
+  content: "<>";
+  font: 17px "Consolas", monospace;
+  color: #333;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+
+  top: 18px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  /*left line */
+
+  position: absolute;
+  pointer-events: none;
+}
+
+#search_univ select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+</style>

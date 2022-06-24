@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <h2>ログイン</h2>
-    <label for="email">Email</label>
-    <input id="email" type="email" v-model="email" />
+  <div class="login_form">
+    <h1>ログイン</h1>
+    <input id="email" type="email" v-model="email" placeholder="Email" />
     <br /><br />
-    <label for="password">Password</label>
-    <input id="password" type="password" v-model="password" />
+    <input
+      id="password"
+      type="password"
+      v-model="password"
+      placeholder="PassWord"
+    />
     <br /><br />
-    <button v-on:click="login">{{ LoginStatus }}</button>
+    <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="login">
+      {{ LoginStatus }}
+    </button>
   </div>
 </template>
 
@@ -43,3 +48,34 @@ export default {
   },
 }
 </script>
+
+<style>
+.login_form {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 25%;
+  margin: 50px auto;
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+  float: right;
+}
+.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+  border-bottom: 5px solid #b84c00;
+}
+.btn--orange:hover {
+  margin-top: 3px;
+  color: #fff;
+  background: #f56500;
+  border-bottom: 2px solid #b84c00;
+}
+.btn--shadow {
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+router-link {
+  color: black;
+}
+</style>
