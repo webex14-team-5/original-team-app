@@ -3,7 +3,9 @@
     <Login @loginUid="uid = $event" @userData="userData = $event" />
   </section>
   <section>
-    <button v-on:click="show">表示する</button>
+    <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="show">
+      表示する
+    </button>
     <div>ニックネーム: {{ this.UserName }}</div>
     <div>
       お気に入り大学:

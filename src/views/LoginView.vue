@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Login @loginUid="uid = $event" @userData="userData = $event" />
+    <Login
+      class="form"
+      @loginUid="uid = $event"
+      @userData="userData = $event"
+    />
     <router-link to="/register"
       >アカウントをお持ちでない方はこちらから</router-link
     >

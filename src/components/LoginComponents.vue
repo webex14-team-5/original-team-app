@@ -1,13 +1,21 @@
 <template>
   <div>
     <h2>ログイン</h2>
-    <label for="email">Email</label>
-    <input id="email" type="email" v-model="email" />
+    <input id="email" type="email" v-model="email" placeholder="Email" />
     <br /><br />
-    <label for="password">Password</label>
-    <input id="password" type="password" v-model="password" />
+    <input
+      id="password"
+      type="password"
+      v-model="password"
+      placeholder="PassWord"
+    />
     <br /><br />
-    <button v-on:click="login">{{ LoginStatus }}</button>
+    <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="login">
+      {{ LoginStatus }}
+    </button>
+    <router-link to="/register" class="black_char"
+      >アカウントをお持ちでない方はこちらから</router-link
+    >
   </div>
 </template>
 
@@ -43,3 +51,24 @@ export default {
   },
 }
 </script>
+
+<style>
+.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+  border-bottom: 5px solid #b84c00;
+}
+.btn--orange:hover {
+  margin-top: 3px;
+  color: #fff;
+  background: #f56500;
+  border-bottom: 2px solid #b84c00;
+}
+.btn--shadow {
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+router-link {
+  color: black;
+}
+</style>
