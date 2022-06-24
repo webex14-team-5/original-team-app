@@ -34,7 +34,7 @@
       <option value="明治大学">明治大学</option>
     </select>
     <br /><br />
-    <button class="btn" v-on:click="register">登録</button>
+    <button class="btn" v-on:click="register">登録</button
   </div>
 </template>
 
