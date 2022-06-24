@@ -13,9 +13,6 @@
     <button class="btn btn--cubic btn--orange btn--shadow" v-on:click="login">
       {{ LoginStatus }}
     </button>
-    <router-link to="/register" class="black_char"
-      >アカウントをお持ちでない方はこちらから</router-link
-    >
   </div>
 </template>
 
