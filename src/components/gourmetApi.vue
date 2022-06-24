@@ -45,8 +45,8 @@ export default {
       numbers: "",
       // 条件合致する店が存在するかどうか
       exit: false,
-      lat: 35.032563,
-      lng: 135.723292,
+      // lat: 35.032563,
+      // lng: 135.723292,
       userData: "",
       // lat...緯度 lng...経度
       // 大学の設定
